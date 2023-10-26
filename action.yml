@@ -1,0 +1,33 @@
+name: 'Rust Workspace Matrix'
+description: 'Generate a matrix depending on changed files'
+author: 'Foresight Spatial Labs'
+
+inputs:
+  token:
+    description: 'The Github Token found in action context secrets.GITHUB_TOKEN'
+    required: true
+  workspaces:
+    description: 'Rust workspaces to include. JSON array'
+    required: true
+    default: '[""]'
+  base_ref:
+    description:
+      'git commit to compare against found in action context github.base_ref'
+    required: true
+  head_ref:
+    description: 'git commit head found in action context github.head_ref'
+    required: true
+  fallback:
+    description:
+      'Fallback value in case no file inside the given workspaces were changed'
+    required: false
+
+outputs:
+  matrix:
+    description: 'Generated Matrix of changed workspaces'
+  fallback:
+    description: 'Whether the output was set to the fallback'
+
+runs:
+  using: node20
+  main: dist/index.js

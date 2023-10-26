@@ -1,0 +1,52 @@
+{
+  "name": "action-changed-rust-workspaces",
+  "description": "Generate a Github Actions matrix depending on changed files",
+  "version": "0.1.0",
+  "author": "Foresight Spatial Labs",
+  "private": true,
+  "homepage": "https://github.com/ForesightMiningSoftwareCorporation/action-changed-rust-workspaces#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ForesightMiningSoftwareCorporation/action-changed-rust-workspaces.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ForesightMiningSoftwareCorporation/action-changed-rust-workspaces/issues"
+  },
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "Rust"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "bundle": "npm run format:write && npm run package",
+    "format:write": "prettier --write **/*.ts",
+    "format:check": "prettier --check **/*.ts",
+    "lint": "npx eslint src/* -c ./.github/linters/.eslintrc.yml",
+    "package": "ncc build src/index.ts --license licenses.txt",
+    "package:watch": "npm run package -- --watch",
+    "all": "npm run format:write && npm run lint && npm run package"
+  },
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": "./.github/linters/.eslintrc.yml"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@typescript-eslint/parser": "^6.9.0",
+    "@babel/preset-env": "^7.23.2",
+    "@vercel/ncc": "^0.38.1",
+    "eslint": "^8.52.0",
+    "eslint-plugin-github": "^4.10.1",
+    "prettier": "^3.0.3"
+  }
+}
