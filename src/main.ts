@@ -115,7 +115,7 @@ function fetchInputs() {
 
 function setOutput(matrix: string[], fallback = false) {
   const matrix_string = JSON.stringify(matrix);
-  core.debug(`
+  console.log(`
     Output:
     matrix: ${matrix_string}
     fallback: ${fallback}
