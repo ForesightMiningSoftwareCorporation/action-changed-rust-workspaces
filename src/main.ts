@@ -71,7 +71,9 @@ function filterTree(tree: string[], workspaces: string[]): string[] {
       const s = x.split('Cargo.toml')[0];
       return s.substring(0, s.length - 1);
     });
-  return crate_paths.sort((a, b) => b.split('/').length - a.split('/').length);
+  return crate_paths
+    .sort((a, b) => b.length - a.length)
+    .sort((a, b) => b.split('/').length - a.split('/').length);
 }
 
 async function fetchDiff(
